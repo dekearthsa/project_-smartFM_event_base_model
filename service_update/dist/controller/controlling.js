@@ -27,7 +27,7 @@ var ConvertDataFlow;
                 const countPeople = this.counting;
                 try {
                     const countingPeople = yield lightFlowUpdateModel.findOne({ deviceName });
-                    if (!(countingPeople.data)) {
+                    if (!countingPeople) {
                         yield lightFlowUpdateModel.create({
                             device_name: deviceName,
                             counting: 1,

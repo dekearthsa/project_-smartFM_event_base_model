@@ -9,12 +9,14 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 const amqplib = require('amqplib/callback_api');
+const connection = require('./model/connection');
 const { ConvertDataFlow } = require("./controller/controlling");
 const queue = 'update';
 const rabbitUser = "admin";
 const rabbitPass = "1234";
 // const hosting = "amqp://localhost"
 const hosting = `amqp://${rabbitUser}:${rabbitPass}@host.docker.internal`;
+connection.connect();
 amqplib.connect(hosting, (err, conn) => {
     console.log("connected at rabbitMQ at amqp://localhost as receiver");
     if (err)
@@ -28,6 +30,7 @@ amqplib.connect(hosting, (err, conn) => {
             if (msg !== null) {
                 const stringData = msg.content.toString();
                 const jsonData = JSON.parse(stringData);
+                console.log("jsonData => ", jsonData);
                 const updateData = new ConvertDataFlow.UpdateData(jsonData.device_name, jsonData.counting, jsonData.timestamp);
                 const dataOut = yield updateData.haddleUpdateData();
                 console.log("dataout => ", dataOut);

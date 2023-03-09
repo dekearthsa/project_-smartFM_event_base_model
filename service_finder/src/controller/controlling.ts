@@ -22,7 +22,7 @@ export namespace ConvertDataFlow {
 
             try{
                 const countingPeople = await lightFlowUpdateModel.findOne({deviceName});
-                if(!(countingPeople.data)){
+                if(!countingPeople){
                     await lightFlowUpdateModel.create({
                         device_name: deviceName,
                         counting: 1,

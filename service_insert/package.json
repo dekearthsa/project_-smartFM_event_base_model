@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "@types/node": "^18.14.2",
-    "amqplib": "^0.10.3"
+    "amqplib": "^0.10.3",
+    "mongoose": "^7.0.1"
   }
 }

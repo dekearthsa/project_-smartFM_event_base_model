@@ -10,6 +10,6 @@ COPY package-lock.json .
 RUN npm install && npm cache clean --force
 COPY . .
 
-EXPOSE 8080
+EXPOSE 8021
 
 CMD ["node", "./dist/index.js"]

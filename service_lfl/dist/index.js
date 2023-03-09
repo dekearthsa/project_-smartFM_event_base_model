@@ -11,16 +11,18 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 const amqplib = require('amqplib/callback_api');
 const mqtt = require("mqtt");
 require("dotenv").config({ path: "../.env" });
-// const connMQTT = process.env.CONN || "mqtt://localhost:1883";
-// const connRabbitMQ = process.env.CONNRABBITMQ || "amqp://localhost";
-const connMQTT = process.env.CONN || "mqtt://host.docker.internal:1883";
-const connRabbitMQ = process.env.CONNRABBITMQ || "amqp://host.docker.internal";
-// const port = process.env.PORT 
 const username = process.env.USERNAME || "admin";
 const password = process.env.PASSWORD || "1234";
 const isTopic = process.env.TOPIC || "lfl/message";
 const queueTopicInsert = 'inserting';
 const queueTopicFinder = 'update';
+const rabbitUser = "admin";
+const rabbitPass = "1234";
+// const connMQTT = process.env.CONN || "mqtt://localhost:1883";
+// const connRabbitMQ = process.env.CONNRABBITMQ || "amqp://localhost";
+const connMQTT = process.env.CONN || "mqtt://host.docker.internal:1883";
+const connRabbitMQ = process.env.CONNRABBITMQ || `amqp://${rabbitUser}:${rabbitPass}@host.docker.internal`;
+// const port = process.env.PORT 
 const mqttClient = mqtt.connect(connMQTT, {
     username: username,
     password: password

@@ -18,7 +18,7 @@ services:
     build:
       context: "./service_af"
     ports:
-      - "8080:8080"
+      - "8021:8021"
     networks:
       - net
 
@@ -28,7 +28,7 @@ services:
     build:
       context: "./service_lfl"
     ports:
-      - "8081:8081"
+      - "8022:8022"
     networks:
       - net
 
@@ -86,6 +86,9 @@ services:
   rabbitMQ:
     container_name: rabbitmq
     restart: always
+    environment:
+      - RABBITMQ_DEFAULT_USER=admin
+      - RABBITMQ_DEFAULT_PASS=1234
     image: rabbitmq:management-alpine
     tty: true
     ports:
@@ -134,7 +137,7 @@ services:
       ME_CONFIG_MONGODB_URL: mongodb://root:root@database:27017/
       ME_CONFIG_SITE_BASEURL: /mongoadmin/
     ports:
-      - 8822:8822
+      - 8081:8081
     networks:
       - net
 

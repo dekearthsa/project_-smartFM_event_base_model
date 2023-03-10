@@ -21,7 +21,10 @@ export namespace ConvertDataFlow {
             const countPeople = this.counting
 
             try{
-                const countingPeople = await lightFlowUpdateModel.findOne({deviceName});
+                console.log("this.device_name => ", this.device_name)
+                console.log("deviceName => ", deviceName)
+                const countingPeople = await lightFlowUpdateModel.findOne({device_name:deviceName});
+                console.log("countingPeople => ", countingPeople)
                 if(!countingPeople){
                     await lightFlowUpdateModel.create({
                         device_name: deviceName,

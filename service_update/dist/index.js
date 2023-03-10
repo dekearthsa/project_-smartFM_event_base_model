@@ -30,7 +30,7 @@ amqplib.connect(hosting, (err, conn) => {
             if (msg !== null) {
                 const stringData = msg.content.toString();
                 const jsonData = JSON.parse(stringData);
-                console.log("jsonData => ", jsonData);
+                // console.log("jsonData => ", jsonData)
                 const updateData = new ConvertDataFlow.UpdateData(jsonData.device_name, jsonData.counting, jsonData.timestamp);
                 const dataOut = yield updateData.haddleUpdateData();
                 console.log("dataout => ", dataOut);

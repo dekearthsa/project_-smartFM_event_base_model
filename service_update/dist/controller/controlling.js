@@ -26,7 +26,10 @@ var ConvertDataFlow;
                 const timing = this.timestamp;
                 const countPeople = this.counting;
                 try {
-                    const countingPeople = yield lightFlowUpdateModel.findOne({ deviceName });
+                    console.log("this.device_name => ", this.device_name);
+                    console.log("deviceName => ", deviceName);
+                    const countingPeople = yield lightFlowUpdateModel.findOne({ device_name: deviceName });
+                    console.log("countingPeople => ", countingPeople);
                     if (!countingPeople) {
                         yield lightFlowUpdateModel.create({
                             device_name: deviceName,
